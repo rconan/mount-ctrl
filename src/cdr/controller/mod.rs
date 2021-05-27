@@ -77,7 +77,7 @@ impl<'a> Dos for Controller<'a> {
                 } else {
                     Err(DOSIOSError::Inputs("Either mount controller controller OSSAzDriveD, OSSElDriveD or OSSGIRDriveD not found".into()))
                 }
-            }
+            },
             None => Err(DOSIOSError::Inputs(
                 "None data passed to mount controller".into(),
             )),
