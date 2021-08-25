@@ -3,9 +3,9 @@
  *
  * Code generated for Simulink model 'Mount_Drv_PDR2021'.
  *
- * Model version                  : 1.952
+ * Model version                  : 1.901
  * Simulink Coder version         : 9.0 (R2018b) 24-May-2018
- * C/C++ source code generated on : Tue Mar  2 10:16:45 2021
+ * C/C++ source code generated on : Tue Aug 24 14:59:10 2021
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -88,28 +88,6 @@ real_T look1_binlxpw(real_T u0, const real_T bp0[], const real_T table[],
 
 /*
  * Output and update for enable system:
- *    '<S2>/g(v)'
- *    '<S4>/g(v)'
- */
-void Mount_Drv_PDR2021_gv(real_T rtu_Enable, real_T *rty_g,
-  B_gv_Mount_Drv_PDR2021_T *localB, const struct_1utrxinkom0IYpuKJbdriH
-  *rtp_frParStruct)
-{
-  /* Outputs for Enabled SubSystem: '<S2>/g(v)' incorporates:
-   *  EnablePort: '<S8>/Enable'
-   */
-  if (rtu_Enable > 0.0) {
-    /* Sum: '<S8>/Sum' incorporates:
-     *  Constant: '<S8>/gc'
-     */
-    *rty_g = rtp_frParStruct->Tc / rtp_frParStruct->sigm0 + localB->Divide;
-  }
-
-  /* End of Outputs for SubSystem: '<S2>/g(v)' */
-}
-
-/*
- * Output and update for enable system:
  *    '<S2>/v2z'
  *    '<S4>/v2z'
  */
@@ -130,7 +108,7 @@ void Mount_Drv_PDR2021_v2z(real_T rtu_Enable, real_T rtu_v, real_T rtu_gv,
   /* End of Outputs for SubSystem: '<S2>/v2z' */
 }
 
-real_T this_rt_roundd_snf(real_T u)
+real_T rt_roundd_snf(real_T u)
 {
   real_T y;
   if (fabs(u) < 4.503599627370496E+15) {
@@ -184,10 +162,10 @@ void Mount_Drv_PDR2021_step(void)
   real_T rtb_Divide;
   real_T rtb_Diff[14];
   real_T rtb_AZvelavgrads;
-  real_T rtb_Divide_l;
+  real_T rtb_Divide_b;
   real_T rtb_ELvelavgrads;
   real_T rtb_AZ_drv_qt;
-  real_T rtb_Gain;
+  real_T rtb_Gain_l;
   real_T AZ_TFd_tmp;
   int32_T i;
   real_T rtb_GIRvelavgrads_0;
@@ -229,7 +207,7 @@ void Mount_Drv_PDR2021_step(void)
    *  Delay: '<S1>/AZ_delay'
    *  Quantizer: '<S1>/AZ_drv_qt'
    */
-  AZ_TFd_tmp = this_rt_roundd_snf
+  AZ_TFd_tmp = rt_roundd_snf
     (Mount_Drv_PDR2021_DW.AZ_delay_DSTATE[Mount_Drv_PDR2021_DW.CircBufIdx] /
      25.93994140625) * 25.93994140625 - -0.33333333333333331 *
     Mount_Drv_PDR2021_DW.AZ_TFd_states;
@@ -281,20 +259,14 @@ void Mount_Drv_PDR2021_step(void)
   /* Outputs for Enabled SubSystem: '<S1>/AZ DT Lugre Fr model' incorporates:
    *  EnablePort: '<S2>/Enable'
    */
-  /* Outputs for Enabled SubSystem: '<S2>/g(v)' */
+  /* Outputs for Enabled SubSystem: '<S2>/v2z' */
   /* Constant: '<S2>/Constant' incorporates:
    *  DiscreteIntegrator: '<S2>/Discrete-Time Integrator'
    *  Gain: '<S1>/AZ vel avg => rad//s'
    */
-  Mount_Drv_PDR2021_gv(0.0, &Mount_Drv_PDR2021_B.Sum_gj, &Mount_Drv_PDR2021_B.gv,
-                       &Mount_Drv_PDR2021_ConstP.gv_rtw_collapsed_sub_expr_0);
-
-  /* End of Outputs for SubSystem: '<S2>/g(v)' */
-
-  /* Outputs for Enabled SubSystem: '<S2>/v2z' */
-  Mount_Drv_PDR2021_v2z(0.0, rtb_ELvelavgrads, Mount_Drv_PDR2021_B.Sum_gj,
-                        Mount_Drv_PDR2021_DW.DiscreteTimeIntegrator_DSTATE_m,
-                        &Mount_Drv_PDR2021_B.Sum_d);
+  Mount_Drv_PDR2021_v2z(0.0, rtb_ELvelavgrads, Mount_Drv_PDR2021_B.Sum_a,
+                        Mount_Drv_PDR2021_DW.DiscreteTimeIntegrator_DSTATE_o,
+                        &Mount_Drv_PDR2021_B.Sum_e);
 
   /* End of Outputs for SubSystem: '<S2>/v2z' */
 
@@ -305,27 +277,28 @@ void Mount_Drv_PDR2021_step(void)
    *  Gain: '<S2>/sigma_1'
    *  Gain: '<S2>/sigma_v'
    */
-  Mount_Drv_PDR2021_B.Sum_g = (0.0 * Mount_Drv_PDR2021_B.Sum_d + 0.0 *
-    Mount_Drv_PDR2021_DW.DiscreteTimeIntegrator_DSTATE_m) + 835023.05537142872 *
+  Mount_Drv_PDR2021_B.Sum_oy = (0.0 * Mount_Drv_PDR2021_B.Sum_e + 0.0 *
+    Mount_Drv_PDR2021_DW.DiscreteTimeIntegrator_DSTATE_o) + 835023.05537142872 *
     rtb_ELvelavgrads;
 
   /* Update for DiscreteIntegrator: '<S2>/Discrete-Time Integrator' */
-  Mount_Drv_PDR2021_DW.DiscreteTimeIntegrator_DSTATE_m += 0.001 *
-    Mount_Drv_PDR2021_B.Sum_d;
+  Mount_Drv_PDR2021_DW.DiscreteTimeIntegrator_DSTATE_o += 0.001 *
+    Mount_Drv_PDR2021_B.Sum_e;
 
   /* End of Outputs for SubSystem: '<S1>/AZ DT Lugre Fr model' */
 
   /* Sum: '<S1>/Sum' incorporates:
    *  Sum: '<S30>/Sum1'
    */
-  rtb_Abs = ((rtb_Divide + rtb_AZ_drv_qt) + rtb_Abs) - Mount_Drv_PDR2021_B.Sum_g;
+  rtb_Abs = ((rtb_Divide + rtb_AZ_drv_qt) + rtb_Abs) -
+    Mount_Drv_PDR2021_B.Sum_oy;
 
   /* DiscreteTransferFcn: '<S1>/EL_TFd' incorporates:
    *  Delay: '<S1>/EL_delay'
    *  Quantizer: '<S1>/EL_drv_qt'
    */
-  rtb_Divide = this_rt_roundd_snf
-    (Mount_Drv_PDR2021_DW.EL_delay_DSTATE[Mount_Drv_PDR2021_DW.CircBufIdx_i] /
+  rtb_Divide = rt_roundd_snf
+    (Mount_Drv_PDR2021_DW.EL_delay_DSTATE[Mount_Drv_PDR2021_DW.CircBufIdx_k] /
      14.34326171875) * 14.34326171875 - -0.33333333333333331 *
     Mount_Drv_PDR2021_DW.EL_TFd_states;
   rtb_AZvelavgrads = 0.33333333333333331 * rtb_Divide + 0.33333333333333331 *
@@ -367,13 +340,13 @@ void Mount_Drv_PDR2021_step(void)
    *  Gain: '<S31>/Gain2'
    *  Lookup_n-D: '<S31>/EMF Distortion'
    */
-  rtb_Divide_l = 0.096553055904219379 * rtb_AZvelavgrads * 0.004 * 0.25 *
+  rtb_Divide_b = 0.096553055904219379 * rtb_AZvelavgrads * 0.004 * 0.25 *
     look1_binlxpw(rtb_AZ_drv_qt, Mount_Drv_PDR2021_ConstP.pooled8,
-                  Mount_Drv_PDR2021_ConstP.EMFDistortion_tableData_m, 360U);
+                  Mount_Drv_PDR2021_ConstP.EMFDistortion_tableData_h, 360U);
 
   /* Lookup_n-D: '<S31>/Cogging' */
   rtb_AZ_drv_qt = look1_binlxpw(rtb_AZ_drv_qt, Mount_Drv_PDR2021_ConstP.pooled8,
-    Mount_Drv_PDR2021_ConstP.Cogging_tableData_a, 360U);
+    Mount_Drv_PDR2021_ConstP.Cogging_tableData_h, 360U);
 
   /* Gain: '<S1>/EL vel avg => rad//s' */
   rtb_ELvelavgrads = 0.0;
@@ -384,21 +357,14 @@ void Mount_Drv_PDR2021_step(void)
   /* Outputs for Enabled SubSystem: '<S1>/EL DT Lugre Fr model' incorporates:
    *  EnablePort: '<S4>/Enable'
    */
-  /* Outputs for Enabled SubSystem: '<S4>/g(v)' */
+  /* Outputs for Enabled SubSystem: '<S4>/v2z' */
   /* Constant: '<S4>/Constant' incorporates:
    *  DiscreteIntegrator: '<S4>/Discrete-Time Integrator'
    *  Gain: '<S1>/EL vel avg => rad//s'
    */
-  Mount_Drv_PDR2021_gv(0.0, &Mount_Drv_PDR2021_B.Sum_f,
-                       &Mount_Drv_PDR2021_B.gv_a,
-                       &Mount_Drv_PDR2021_ConstP.gv_rtw_collapsed_sub_expr_5);
-
-  /* End of Outputs for SubSystem: '<S4>/g(v)' */
-
-  /* Outputs for Enabled SubSystem: '<S4>/v2z' */
-  Mount_Drv_PDR2021_v2z(0.0, rtb_ELvelavgrads, Mount_Drv_PDR2021_B.Sum_f,
+  Mount_Drv_PDR2021_v2z(0.0, rtb_ELvelavgrads, Mount_Drv_PDR2021_B.Sum_n,
                         Mount_Drv_PDR2021_DW.DiscreteTimeIntegrator_DSTATE_k,
-                        &Mount_Drv_PDR2021_B.Sum_p);
+                        &Mount_Drv_PDR2021_B.Sum_h);
 
   /* End of Outputs for SubSystem: '<S4>/v2z' */
 
@@ -409,28 +375,28 @@ void Mount_Drv_PDR2021_step(void)
    *  Gain: '<S4>/sigma_1'
    *  Gain: '<S4>/sigma_v'
    */
-  Mount_Drv_PDR2021_B.Sum_e = (0.0 * Mount_Drv_PDR2021_B.Sum_p + 0.0 *
+  Mount_Drv_PDR2021_B.Sum_o = (0.0 * Mount_Drv_PDR2021_B.Sum_h + 0.0 *
     Mount_Drv_PDR2021_DW.DiscreteTimeIntegrator_DSTATE_k) + 877281.23498901119 *
     rtb_ELvelavgrads;
 
   /* Update for DiscreteIntegrator: '<S4>/Discrete-Time Integrator' */
   Mount_Drv_PDR2021_DW.DiscreteTimeIntegrator_DSTATE_k += 0.001 *
-    Mount_Drv_PDR2021_B.Sum_p;
+    Mount_Drv_PDR2021_B.Sum_h;
 
   /* End of Outputs for SubSystem: '<S1>/EL DT Lugre Fr model' */
 
   /* Sum: '<S1>/Sum1' incorporates:
    *  Sum: '<S31>/Sum1'
    */
-  rtb_Divide_l = ((rtb_Divide_l + rtb_AZ_drv_qt) + rtb_AZvelavgrads) -
-    Mount_Drv_PDR2021_B.Sum_e;
+  rtb_Divide_b = ((rtb_Divide_b + rtb_AZ_drv_qt) + rtb_AZvelavgrads) -
+    Mount_Drv_PDR2021_B.Sum_o;
 
   /* DiscreteTransferFcn: '<S1>/GIR_TFd' incorporates:
    *  Delay: '<S1>/GIR_delay'
    *  Quantizer: '<S1>/GIR_drv_qt'
    */
-  rtb_ELvelavgrads = this_rt_roundd_snf
-    (Mount_Drv_PDR2021_DW.GIR_delay_DSTATE[Mount_Drv_PDR2021_DW.CircBufIdx_n] /
+  rtb_ELvelavgrads = rt_roundd_snf
+    (Mount_Drv_PDR2021_DW.GIR_delay_DSTATE[Mount_Drv_PDR2021_DW.CircBufIdx_m] /
      19.8486328125) * 19.8486328125 - -0.33333333333333331 *
     Mount_Drv_PDR2021_DW.GIR_TFd_states;
   rtb_AZvelavgrads = 0.33333333333333331 * rtb_ELvelavgrads +
@@ -470,7 +436,7 @@ void Mount_Drv_PDR2021_step(void)
    *  Product: '<S15>/Divide'
    *  Sum: '<S14>/Sum'
    */
-  rtb_Gain = rtb_GIRvelavgrads_0 - fabs(rtb_GIRvelavgrads_0) /
+  rtb_Gain_l = rtb_GIRvelavgrads_0 - fabs(rtb_GIRvelavgrads_0) /
     (Mount_Drv_PDR2021_B.Divide + 7.6436250000000009E-6) *
     Mount_Drv_PDR2021_DW.DiscreteTimeIntegrator_DSTATE;
 
@@ -481,12 +447,12 @@ void Mount_Drv_PDR2021_step(void)
    *  Gain: '<S5>/sigma_1'
    *  Gain: '<S5>/sigma_v'
    */
-  Mount_Drv_PDR2021_B.Sum = (3.799854144569236E+7 * rtb_Gain + 2.304E+9 *
+  Mount_Drv_PDR2021_B.Sum = (3.799854144569236E+7 * rtb_Gain_l + 2.304E+9 *
     Mount_Drv_PDR2021_DW.DiscreteTimeIntegrator_DSTATE) + 4377.5999999999995 *
     rtb_GIRvelavgrads_0;
 
   /* Update for DiscreteIntegrator: '<S5>/Discrete-Time Integrator' */
-  Mount_Drv_PDR2021_DW.DiscreteTimeIntegrator_DSTATE += 0.001 * rtb_Gain;
+  Mount_Drv_PDR2021_DW.DiscreteTimeIntegrator_DSTATE += 0.001 * rtb_Gain_l;
 
   /* End of Outputs for SubSystem: '<S1>/GIR DT Lugre Fr model' */
 
@@ -524,25 +490,25 @@ void Mount_Drv_PDR2021_step(void)
                     sin(rtb_AZ_drv_qt * 2880.0) + sin(rtb_AZ_drv_qt * 4320.0) *
                     180.0) + rtb_AZvelavgrads) - Mount_Drv_PDR2021_B.Sum;
 
-  /* Outport: '<Root>/Mount_F' incorporates:
-   *  Gain: '<S1>/convert to Az drive forces'
-   *  Gain: '<S1>/convert to El drive forces'
-   *  Gain: '<S1>/convert to GIR drive forces'
+  /* Outport: '<Root>/Mount_T' incorporates:
+   *  Gain: '<S1>/convert to Az drive torques'
+   *  Gain: '<S1>/convert to El drive torques'
+   *  Gain: '<S1>/convert to GIR drive torques'
    */
   for (i = 0; i < 12; i++) {
-    Mount_Drv_PDR2021_Y.Mount_F[i] = 0.083333333333333329 * rtb_Abs;
+    Mount_Drv_PDR2021_Y.Mount_T[i] = 0.083333333333333329 * rtb_Abs;
   }
 
-  Mount_Drv_PDR2021_Y.Mount_F[12] = 0.25 * rtb_Divide_l;
-  Mount_Drv_PDR2021_Y.Mount_F[16] = 0.25 * rtb_AZ_drv_qt;
-  Mount_Drv_PDR2021_Y.Mount_F[13] = 0.25 * rtb_Divide_l;
-  Mount_Drv_PDR2021_Y.Mount_F[17] = 0.25 * rtb_AZ_drv_qt;
-  Mount_Drv_PDR2021_Y.Mount_F[14] = 0.25 * rtb_Divide_l;
-  Mount_Drv_PDR2021_Y.Mount_F[18] = 0.25 * rtb_AZ_drv_qt;
-  Mount_Drv_PDR2021_Y.Mount_F[15] = 0.25 * rtb_Divide_l;
-  Mount_Drv_PDR2021_Y.Mount_F[19] = 0.25 * rtb_AZ_drv_qt;
+  Mount_Drv_PDR2021_Y.Mount_T[12] = 0.25 * rtb_Divide_b;
+  Mount_Drv_PDR2021_Y.Mount_T[16] = 0.25 * rtb_AZ_drv_qt;
+  Mount_Drv_PDR2021_Y.Mount_T[13] = 0.25 * rtb_Divide_b;
+  Mount_Drv_PDR2021_Y.Mount_T[17] = 0.25 * rtb_AZ_drv_qt;
+  Mount_Drv_PDR2021_Y.Mount_T[14] = 0.25 * rtb_Divide_b;
+  Mount_Drv_PDR2021_Y.Mount_T[18] = 0.25 * rtb_AZ_drv_qt;
+  Mount_Drv_PDR2021_Y.Mount_T[15] = 0.25 * rtb_Divide_b;
+  Mount_Drv_PDR2021_Y.Mount_T[19] = 0.25 * rtb_AZ_drv_qt;
 
-  /* End of Outport: '<Root>/Mount_F' */
+  /* End of Outport: '<Root>/Mount_T' */
 
   /* Update for UnitDelay: '<S3>/UD'
    *
@@ -571,12 +537,12 @@ void Mount_Drv_PDR2021_step(void)
   /* Update for Delay: '<S1>/EL_delay' incorporates:
    *  Inport: '<Root>/Mount_cmd'
    */
-  Mount_Drv_PDR2021_DW.EL_delay_DSTATE[Mount_Drv_PDR2021_DW.CircBufIdx_i] =
+  Mount_Drv_PDR2021_DW.EL_delay_DSTATE[Mount_Drv_PDR2021_DW.CircBufIdx_k] =
     Mount_Drv_PDR2021_U.Mount_cmd[1];
-  if (Mount_Drv_PDR2021_DW.CircBufIdx_i < 3U) {
-    Mount_Drv_PDR2021_DW.CircBufIdx_i++;
+  if (Mount_Drv_PDR2021_DW.CircBufIdx_k < 3U) {
+    Mount_Drv_PDR2021_DW.CircBufIdx_k++;
   } else {
-    Mount_Drv_PDR2021_DW.CircBufIdx_i = 0U;
+    Mount_Drv_PDR2021_DW.CircBufIdx_k = 0U;
   }
 
   /* End of Update for Delay: '<S1>/EL_delay' */
@@ -587,12 +553,12 @@ void Mount_Drv_PDR2021_step(void)
   /* Update for Delay: '<S1>/GIR_delay' incorporates:
    *  Inport: '<Root>/Mount_cmd'
    */
-  Mount_Drv_PDR2021_DW.GIR_delay_DSTATE[Mount_Drv_PDR2021_DW.CircBufIdx_n] =
+  Mount_Drv_PDR2021_DW.GIR_delay_DSTATE[Mount_Drv_PDR2021_DW.CircBufIdx_m] =
     Mount_Drv_PDR2021_U.Mount_cmd[2];
-  if (Mount_Drv_PDR2021_DW.CircBufIdx_n < 3U) {
-    Mount_Drv_PDR2021_DW.CircBufIdx_n++;
+  if (Mount_Drv_PDR2021_DW.CircBufIdx_m < 3U) {
+    Mount_Drv_PDR2021_DW.CircBufIdx_m++;
   } else {
-    Mount_Drv_PDR2021_DW.CircBufIdx_n = 0U;
+    Mount_Drv_PDR2021_DW.CircBufIdx_m = 0U;
   }
 
   /* End of Update for Delay: '<S1>/GIR_delay' */
@@ -624,17 +590,17 @@ void Mount_Drv_PDR2021_initialize(void)
   (void)memset(&Mount_Drv_PDR2021_U, 0, sizeof(ExtU_Mount_Drv_PDR2021_T));
 
   /* external outputs */
-  (void) memset(&Mount_Drv_PDR2021_Y.Mount_F[0], 0,
+  (void) memset(&Mount_Drv_PDR2021_Y.Mount_T[0], 0,
                 20U*sizeof(real_T));
 
   /* InitializeConditions for Delay: '<S1>/AZ_delay' */
   Mount_Drv_PDR2021_DW.CircBufIdx = 0U;
 
   /* InitializeConditions for Delay: '<S1>/EL_delay' */
-  Mount_Drv_PDR2021_DW.CircBufIdx_i = 0U;
+  Mount_Drv_PDR2021_DW.CircBufIdx_k = 0U;
 
   /* InitializeConditions for Delay: '<S1>/GIR_delay' */
-  Mount_Drv_PDR2021_DW.CircBufIdx_n = 0U;
+  Mount_Drv_PDR2021_DW.CircBufIdx_m = 0U;
 }
 
 /* Model terminate function */

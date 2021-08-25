@@ -3,9 +3,9 @@
  *
  * Code generated for Simulink model 'Mount_Drv_PDR2021'.
  *
- * Model version                  : 1.952
+ * Model version                  : 1.901
  * Simulink Coder version         : 9.0 (R2018b) 24-May-2018
- * C/C++ source code generated on : Tue Mar  2 10:16:45 2021
+ * C/C++ source code generated on : Tue Aug 24 14:59:10 2021
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -18,34 +18,6 @@
 
 /* Constant parameters (default storage) */
 const ConstP_Mount_Drv_PDR2021_T Mount_Drv_PDR2021_ConstP = {
-  /* Mask Parameter: gv_rtw_collapsed_sub_expr_0
-   * Referenced by: '<S2>/g(v)'
-   */
-  {
-    835023.05537142872,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    1.0,
-    1.0
-  },
-
-  /* Mask Parameter: gv_rtw_collapsed_sub_expr_5
-   * Referenced by: '<S4>/g(v)'
-   */
-  {
-    877281.23498901119,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    1.0,
-    1.0
-  },
-
   /* Expression: ParasiticModelStruc.oEmf.Amp
    * Referenced by: '<S30>/EMF Distortion'
    */
