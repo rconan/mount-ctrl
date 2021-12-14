@@ -16,7 +16,7 @@ keywords = ["telescope", "astronomy"]
 [dependencies]
 dosio = "^0.1.2"
 paste = "1.0.5"
-simulink-rs = { git = "https://github.com/rconan/simulink-rs.git", branch = "main" }
+simulink-rs = "^0.1.0"
 
 [features]
 default = ["pdr"]
