@@ -1,6 +1,6 @@
 [package]
 name = "mount-ctrl"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Rod Conan <rconan@gmto.org>"]
 edition = "2018"
 license = "MIT"
@@ -14,14 +14,19 @@ keywords = ["telescope", "astronomy"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-dosio = "^0.1.2"
+dosio = {  version = "^0.1.3", default-features = false }
 paste = "1.0.5"
 simulink-rs = "^0.1.0"
 
 [features]
-default = ["pdr"]
+default = ["pdr", "dosio/default"]
 pdr = []
 cdr = []
+dos-prqt = ["dosio/prqt"]
 
 [build-dependencies]
 cc = "1.0.68"
+
+[package.metadata.docs.rs]
+no-default-features = true
+features = ["pdr", "dos-prqt"]
