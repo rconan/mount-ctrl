@@ -3,9 +3,9 @@
  *
  * Code generated for Simulink model 'Mount_Control'.
  *
- * Model version                  : 1.956
+ * Model version                  : 1.980
  * Simulink Coder version         : 9.0 (R2018b) 24-May-2018
- * C/C++ source code generated on : Mon Mar  8 16:47:21 2021
+ * C/C++ source code generated on : Wed Mar  9 16:22:21 2022
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Linux 64)
