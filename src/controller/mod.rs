@@ -8,9 +8,9 @@ r##"
  *
  * Code generated for Simulink model 'Mount_Control'.
  *
- * Model version                  : 1.956
+ * Model version                  : 1.980
  * Simulink Coder version         : 9.0 (R2018b) 24-May-2018
- * C/C++ source code generated on : Mon Mar  8 16:47:21 2021
+ * C/C++ source code generated on : Wed Mar  9 16:22:21 2022
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -40,33 +40,33 @@ r##"
 /* Block signals (default storage) */
 typedef struct {
   real_T RTout;                        /* '<S3>/RTout' */
-  real_T RTout_g;                      /* '<S2>/RTout' */
-  real_T RTout_j;                      /* '<S5>/RTout' */
-  real_T RTout_k;                      /* '<S4>/RTout' */
-  real_T RTout_c;                      /* '<S7>/RTout' */
-  real_T RTout_m;                      /* '<S6>/RTout' */
+  real_T RTout_p;                      /* '<S2>/RTout' */
+  real_T RTout_f;                      /* '<S5>/RTout' */
+  real_T RTout_j;                      /* '<S4>/RTout' */
+  real_T RTout_o;                      /* '<S7>/RTout' */
+  real_T RTout_pe;                     /* '<S6>/RTout' */
   real_T RTin;                         /* '<S2>/RTin' */
-  real_T RTin_k;                       /* '<S3>/RTin' */
-  real_T RTin_g;                       /* '<S4>/RTin' */
-  real_T RTin_o;                       /* '<S5>/RTin' */
-  real_T RTin_b;                       /* '<S6>/RTin' */
-  real_T RTin_c;                       /* '<S7>/RTin' */
+  real_T RTin_j;                       /* '<S3>/RTin' */
+  real_T RTin_p;                       /* '<S4>/RTin' */
+  real_T RTin_c;                       /* '<S5>/RTin' */
+  real_T RTin_n;                       /* '<S6>/RTin' */
+  real_T RTin_h;                       /* '<S7>/RTin' */
 } B_Mount_Control_T;
 
 /* Block states (default storage) for system '<Root>' */
 typedef struct {
-  real_T DiscreteSS_DSTATE[11];        /* '<S2>/Discrete SS' */
-  real_T DiscreteSS_DSTATE_i[2];       /* '<S3>/Discrete SS' */
-  real_T DiscreteSS_DSTATE_l[13];      /* '<S4>/Discrete SS' */
-  real_T DiscreteSS_DSTATE_b[2];       /* '<S5>/Discrete SS' */
-  real_T DiscreteSS_DSTATE_m[8];       /* '<S6>/Discrete SS' */
-  real_T DiscreteSS_DSTATE_h[2];       /* '<S7>/Discrete SS' */
+  real_T DiscreteSS_DSTATE[13];        /* '<S2>/Discrete SS' */
+  real_T DiscreteSS_DSTATE_h[2];       /* '<S3>/Discrete SS' */
+  real_T DiscreteSS_DSTATE_l[11];      /* '<S4>/Discrete SS' */
+  real_T DiscreteSS_DSTATE_o[2];       /* '<S5>/Discrete SS' */
+  real_T DiscreteSS_DSTATE_p[7];       /* '<S6>/Discrete SS' */
+  real_T DiscreteSS_DSTATE_oc[2];      /* '<S7>/Discrete SS' */
   real_T RTout_Buffer0;                /* '<S3>/RTout' */
-  real_T RTout_Buffer0_b;              /* '<S2>/RTout' */
-  real_T RTout_Buffer0_k;              /* '<S5>/RTout' */
-  real_T RTout_Buffer0_m;              /* '<S4>/RTout' */
-  real_T RTout_Buffer0_mf;             /* '<S7>/RTout' */
-  real_T RTout_Buffer0_bt;             /* '<S6>/RTout' */
+  real_T RTout_Buffer0_m;              /* '<S2>/RTout' */
+  real_T RTout_Buffer0_g;              /* '<S5>/RTout' */
+  real_T RTout_Buffer0_e;              /* '<S4>/RTout' */
+  real_T RTout_Buffer0_o;              /* '<S7>/RTout' */
+  real_T RTout_Buffer0_h;              /* '<S6>/RTout' */
 } DW_Mount_Control_T;
 
 /* Constant parameters (default storage) */
@@ -74,32 +74,32 @@ typedef struct {
   /* Computed Parameter: DiscreteSS_A
    * Referenced by: '<S2>/Discrete SS'
    */
-  real_T DiscreteSS_A[101];
+  real_T DiscreteSS_A[145];
 
   /* Computed Parameter: DiscreteSS_C
    * Referenced by: '<S2>/Discrete SS'
    */
-  real_T DiscreteSS_C[11];
+  real_T DiscreteSS_C[13];
 
-  /* Computed Parameter: DiscreteSS_A_k
+  /* Computed Parameter: DiscreteSS_A_i
    * Referenced by: '<S4>/Discrete SS'
    */
-  real_T DiscreteSS_A_k[145];
+  real_T DiscreteSS_A_i[101];
 
-  /* Computed Parameter: DiscreteSS_C_o
+  /* Computed Parameter: DiscreteSS_C_n
    * Referenced by: '<S4>/Discrete SS'
    */
-  real_T DiscreteSS_C_o[13];
+  real_T DiscreteSS_C_n[11];
 
-  /* Computed Parameter: DiscreteSS_A_e
+  /* Computed Parameter: DiscreteSS_A_b
    * Referenced by: '<S6>/Discrete SS'
    */
-  real_T DiscreteSS_A_e[50];
+  real_T DiscreteSS_A_b[37];
 
-  /* Computed Parameter: DiscreteSS_C_or
+  /* Computed Parameter: DiscreteSS_C_e
    * Referenced by: '<S6>/Discrete SS'
    */
-  real_T DiscreteSS_C_or[8];
+  real_T DiscreteSS_C_e[7];
 } ConstP_Mount_Control_T;
 
 /* External inputs (root inport signals with default storage) */
@@ -153,12 +153,6 @@ extern void Mount_Control_terminate(void);
 extern RT_MODEL_Mount_Control_T *const Mount_Control_M;
 
 /*-
- * These blocks were eliminated from the model due to optimizations:
- *
- * Block '<S1>/mount_en' : Eliminated nontunable gain of 1
- */
-
-/*-
  * The generated code includes comments that allow you to trace directly
  * back to the appropriate location in the model.  The basic format
  * is <system>/block_name, where system is the system number (uniquely
@@ -170,19 +164,19 @@ extern RT_MODEL_Mount_Control_T *const Mount_Control_M;
  * MATLAB hilite_system command to trace the generated code back
  * to the parent model.  For example,
  *
- * hilite_system('ims_Build5pt3a_mount/Mount_Control')    - opens subsystem ims_Build5pt3a_mount/Mount_Control
- * hilite_system('ims_Build5pt3a_mount/Mount_Control/Kp') - opens and selects block Kp
+ * hilite_system('ims_Build5pt1f/Mount_Control')    - opens subsystem ims_Build5pt1f/Mount_Control
+ * hilite_system('ims_Build5pt1f/Mount_Control/Kp') - opens and selects block Kp
  *
  * Here is the system hierarchy for this model
  *
- * '<Root>' : 'ims_Build5pt3a_mount'
- * '<S1>'   : 'ims_Build5pt3a_mount/Mount_Control'
- * '<S2>'   : 'ims_Build5pt3a_mount/Mount_Control/AZ FB controller'
- * '<S3>'   : 'ims_Build5pt3a_mount/Mount_Control/AZ FF controller'
- * '<S4>'   : 'ims_Build5pt3a_mount/Mount_Control/EL FB controller'
- * '<S5>'   : 'ims_Build5pt3a_mount/Mount_Control/EL FF controller'
- * '<S6>'   : 'ims_Build5pt3a_mount/Mount_Control/GIR FB controller'
- * '<S7>'   : 'ims_Build5pt3a_mount/Mount_Control/GIR FF controller'
+ * '<Root>' : 'ims_Build5pt1f'
+ * '<S1>'   : 'ims_Build5pt1f/Mount_Control'
+ * '<S2>'   : 'ims_Build5pt1f/Mount_Control/AZ FB controller'
+ * '<S3>'   : 'ims_Build5pt1f/Mount_Control/AZ FF controller'
+ * '<S4>'   : 'ims_Build5pt1f/Mount_Control/EL FB controller'
+ * '<S5>'   : 'ims_Build5pt1f/Mount_Control/EL FF controller'
+ * '<S6>'   : 'ims_Build5pt1f/Mount_Control/GIR FB controller'
+ * '<S7>'   : 'ims_Build5pt1f/Mount_Control/GIR FF controller'
  */
 #endif                                 /* RTW_HEADER_Mount_Control_h_ */
 
