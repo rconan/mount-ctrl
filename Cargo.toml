@@ -1,8 +1,8 @@
 [package]
 name = "mount-ctrl"
-version = "0.2.0"
+version = "0.2.1"
 authors = ["Rod Conan <rconan@gmto.org>"]
-edition = "2018"
+edition = "2021"
 license = "MIT"
 description = "Giant Magellan Telescope mount control system"
 repository = "https://github.com/rconan/mount-ctrl"
