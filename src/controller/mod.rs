@@ -37,8 +37,8 @@ impl<'a> Controller<'a> {
     /// Returns a mount controller for the given elevation
     ///
     /// The elevation is either 90, 60 or 30 degrees
-    pub fn at_elevation(ze: i32) -> Result<Self> {
-        Self::at_zenith_angle(90 - ze)
+    pub fn at_elevation(el: i32) -> Result<Self> {
+        Self::at_zenith_angle(90 - el)
     }
     pub fn mount_fb(&mut self) -> Option<&mut [f64; 14]> {
         match self {
@@ -122,6 +122,19 @@ impl<'a> Controller<'a> {
                 let controller::Y::Mountcmd(val) = &controller.mount_cmd;
                 Some(val)
             }
+        }
+    }
+}
+
+impl<'a> Iterator for Controller<'a> {
+    type Item = ();
+
+    fn next(&mut self) -> Option<Self::Item> {
+        match self {
+            Controller::Ze00(control) => control.next(),
+            Controller::Ze30(control) => control.next(),
+            Controller::Ze60(control) => control.next(),
+            Controller::Default(control) => control.next(),
         }
     }
 }
