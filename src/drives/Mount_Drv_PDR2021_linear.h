@@ -1,8 +1,3 @@
-use simulink_binder::import;
-
-import! {Mount_Drv_PDR2021,
-r##"
-#define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION
 /*
  * File: Mount_Drv_PDR2021_linear.h
  *
@@ -111,4 +106,3 @@ extern RT_MODEL_Mount_Drv_PDR2021_linear_T *const Mount_Drv_PDR2021_linear_M;
  *
  * [EOF]
  */
-"##}
