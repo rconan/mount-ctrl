@@ -3,9 +3,9 @@
  *
  * Code generated for Simulink model 'Mount_Control'.
  *
- * Model version                  : 1.1309
- * Simulink Coder version         : 9.0 (R2018b) 24-May-2018
- * C/C++ source code generated on : Tue Jun 28 09:40:48 2022
+ * Model version                  : 5.59
+ * Simulink Coder version         : 9.4 (R2020b) 29-Jul-2020
+ * C/C++ source code generated on : Wed Aug 31 13:54:57 2022
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -15,6 +15,8 @@
 
 #ifndef RTW_HEADER_Mount_Control_types_h_
 #define RTW_HEADER_Mount_Control_types_h_
+
+/* Model Code Variants */
 
 /* Forward declaration for rtModel */
 typedef struct tag_RTM_Mount_Control_T RT_MODEL_Mount_Control_T;

@@ -3,9 +3,9 @@
  *
  * Code generated for Simulink model 'Mount_Control'.
  *
- * Model version                  : 1.1309
- * Simulink Coder version         : 9.0 (R2018b) 24-May-2018
- * C/C++ source code generated on : Tue Jun 28 09:40:48 2022
+ * Model version                  : 5.59
+ * Simulink Coder version         : 9.4 (R2020b) 29-Jul-2020
+ * C/C++ source code generated on : Wed Aug 31 13:54:57 2022
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -18,7 +18,7 @@
 #include <string.h>
 #include <stddef.h>
 #ifndef Mount_Control_COMMON_INCLUDES_
-# define Mount_Control_COMMON_INCLUDES_
+#define Mount_Control_COMMON_INCLUDES_
 #include "rtwtypes.h"
 #endif                                 /* Mount_Control_COMMON_INCLUDES_ */
 
@@ -26,19 +26,19 @@
 
 /* Macros for accessing real-time model data structure */
 #ifndef rtmGetErrorStatus
-# define rtmGetErrorStatus(rtm)        ((rtm)->errorStatus)
+#define rtmGetErrorStatus(rtm)         ((rtm)->errorStatus)
 #endif
 
 #ifndef rtmSetErrorStatus
-# define rtmSetErrorStatus(rtm, val)   ((rtm)->errorStatus = (val))
+#define rtmSetErrorStatus(rtm, val)    ((rtm)->errorStatus = (val))
 #endif
 
 /* Block states (default storage) for system '<Root>' */
 typedef struct {
   real_T AZFFcontroller_DSTATE[2];     /* '<S1>/AZ FF controller' */
-  real_T AZFBcontroller_DSTATE[13];    /* '<S1>/AZ FB controller' */
+  real_T AZFBcontroller_DSTATE[15];    /* '<S1>/AZ FB controller' */
   real_T ELFFcontroller_DSTATE[2];     /* '<S1>/EL FF controller' */
-  real_T ELFBcontroller_DSTATE[11];    /* '<S1>/EL FB controller' */
+  real_T ELFBcontroller_DSTATE[19];    /* '<S1>/EL FB controller' */
   real_T GIRFFcontroller_DSTATE[2];    /* '<S1>/GIR FF controller' */
   real_T GIRFBcontroller_DSTATE[7];    /* '<S1>/GIR FB controller' */
 } DW_Mount_Control_T;
@@ -48,22 +48,22 @@ typedef struct {
   /* Computed Parameter: AZFBcontroller_A
    * Referenced by: '<S1>/AZ FB controller'
    */
-  real_T AZFBcontroller_A[145];
+  real_T AZFBcontroller_A[127];
 
   /* Computed Parameter: AZFBcontroller_C
    * Referenced by: '<S1>/AZ FB controller'
    */
-  real_T AZFBcontroller_C[13];
+  real_T AZFBcontroller_C[15];
 
   /* Computed Parameter: ELFBcontroller_A
    * Referenced by: '<S1>/EL FB controller'
    */
-  real_T ELFBcontroller_A[101];
+  real_T ELFBcontroller_A[199];
 
   /* Computed Parameter: ELFBcontroller_C
    * Referenced by: '<S1>/EL FB controller'
    */
-  real_T ELFBcontroller_C[11];
+  real_T ELFBcontroller_C[19];
 
   /* Computed Parameter: GIRFBcontroller_A
    * Referenced by: '<S1>/GIR FB controller'
@@ -113,6 +113,14 @@ extern void Mount_Control_terminate(void);
 extern RT_MODEL_Mount_Control_T *const Mount_Control_M;
 
 /*-
+ * These blocks were eliminated from the model due to optimizations:
+ *
+ * Block '<S1>/az_ff_en' : Eliminated nontunable gain of 1
+ * Block '<S1>/el_ff_en' : Eliminated nontunable gain of 1
+ * Block '<S1>/gir_ff_en' : Eliminated nontunable gain of 1
+ */
+
+/*-
  * The generated code includes comments that allow you to trace directly
  * back to the appropriate location in the model.  The basic format
  * is <system>/block_name, where system is the system number (uniquely
@@ -124,13 +132,13 @@ extern RT_MODEL_Mount_Control_T *const Mount_Control_M;
  * MATLAB hilite_system command to trace the generated code back
  * to the parent model.  For example,
  *
- * hilite_system('ims_Build5pt1g/Mount_Control')    - opens subsystem ims_Build5pt1g/Mount_Control
- * hilite_system('ims_Build5pt1g/Mount_Control/Kp') - opens and selects block Kp
+ * hilite_system('ims_Build5pt3b_PTTasm/Mount_Control')    - opens subsystem ims_Build5pt3b_PTTasm/Mount_Control
+ * hilite_system('ims_Build5pt3b_PTTasm/Mount_Control/Kp') - opens and selects block Kp
  *
  * Here is the system hierarchy for this model
  *
- * '<Root>' : 'ims_Build5pt1g'
- * '<S1>'   : 'ims_Build5pt1g/Mount_Control'
+ * '<Root>' : 'ims_Build5pt3b_PTTasm'
+ * '<S1>'   : 'ims_Build5pt3b_PTTasm/Mount_Control'
  */
 #endif                                 /* RTW_HEADER_Mount_Control_h_ */
 
