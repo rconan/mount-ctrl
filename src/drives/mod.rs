@@ -8,9 +8,9 @@ r##"
  *
  * Code generated for Simulink model 'Mount_Drv_PDR2021_linear'.
  *
- * Model version                  : 5.60
+ * Model version                  : 5.66
  * Simulink Coder version         : 9.4 (R2020b) 29-Jul-2020
- * C/C++ source code generated on : Wed Aug 31 15:34:37 2022
+ * C/C++ source code generated on : Thu Sep  1 11:53:21 2022
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -54,7 +54,7 @@ typedef struct {
 /* External inputs (root inport signals with default storage) */
 typedef struct {
   real_T Mount_cmd[3];                 /* '<Root>/Mount_cmd' */
-  real_T Mount_pos;                    /* '<Root>/Mount_pos' */
+  real_T Mount_pos[14];                /* '<Root>/Mount_pos' */
 } ExtU_Mount_Drv_PDR2021_linear_T;
 
 /* External outputs (root outports fed by signals with default storage) */

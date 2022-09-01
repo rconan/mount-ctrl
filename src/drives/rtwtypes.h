@@ -3,9 +3,9 @@
  *
  * Code generated for Simulink model 'Mount_Drv_PDR2021_linear'.
  *
- * Model version                  : 5.60
+ * Model version                  : 5.66
  * Simulink Coder version         : 9.4 (R2020b) 29-Jul-2020
- * C/C++ source code generated on : Wed Aug 31 15:34:37 2022
+ * C/C++ source code generated on : Thu Sep  1 11:53:21 2022
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Linux 64)
