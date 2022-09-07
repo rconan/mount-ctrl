@@ -1,6 +1,6 @@
 [package]
 name = "mount-ctrl"
-version = "0.3.0"
+version = "1.0.0"
 authors = ["Rod Conan <rconan@gmto.org>"]
 edition = "2021"
 license = "MIT"
@@ -11,10 +11,16 @@ readme = "README.md"
 categories = ["science", "simulation"]
 keywords = ["telescope", "astronomy"]
 
+[workspace]
+members = ["sampling1000-damping002", "sampling8000-damping0005"]
+
 [dependencies]
 paste = "1.0.6"
 simulink-binder = "0.1.1"
 thiserror = "1.0.31"
+sampling1000-damping002 = { path = "sampling1000-damping002", optional = true }
+sampling8000-damping0005 = { path = "sampling8000-damping0005", optional = true }
 
-[build-dependencies]
-cc = "1.0.68"
+[features]
+s1000d002 = ["sampling1000-damping002"]
+s8000d0005 = ["sampling8000-damping0005"]

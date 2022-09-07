@@ -1,0 +1,12 @@
+[package]
+name = "sampling8000-damping0005"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+paste = "1.0.6"
+simulink-binder = "0.1.1"
+thiserror = "1.0.31"
+
+[build-dependencies]
+cc = "1.0.68"
