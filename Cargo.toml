@@ -24,3 +24,6 @@ sampling8000-damping0005 = { version = "0.1.0", package = "mount-ctrl_sampling80
 [features]
 s1000d002 = ["sampling1000-damping002"]
 s8000d0005 = ["sampling8000-damping0005"]
+
+[package.metadata.docs.rs]
+features = ["s1000d002"]
