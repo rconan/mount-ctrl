@@ -1,5 +1,5 @@
 [package]
-name = "sampling8000-damping0005"
+name = "mount-ctrl_sampling8000-damping0005"
 version = "0.1.0"
 edition = "2021"
 

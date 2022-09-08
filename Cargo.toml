@@ -18,8 +18,8 @@ members = ["sampling1000-damping002", "sampling8000-damping0005"]
 paste = "1.0.6"
 simulink-binder = "0.1.1"
 thiserror = "1.0.31"
-sampling1000-damping002 = { path = "sampling1000-damping002", optional = true }
-sampling8000-damping0005 = { path = "sampling8000-damping0005", optional = true }
+sampling1000-damping002 = { version = "0.1.0", package = "mount-ctrl_sampling1000-damping002", path = "sampling1000-damping002", optional = true }
+sampling8000-damping0005 = { version = "0.1.0", package = "mount-ctrl_sampling8000-damping0005", path = "sampling8000-damping0005", optional = true }
 
 [features]
 s1000d002 = ["sampling1000-damping002"]
