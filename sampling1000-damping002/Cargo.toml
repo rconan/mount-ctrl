@@ -1,6 +1,6 @@
 [package]
-name = "mount-ctrl_sampling1000-damping002"
-version = "0.1.0"
+name = "gmt_mount-ctrl_sampling1000-damping002"
+version = "1.0.0"
 edition = "2021"
 license = "MIT"
 description = "Giant Magellan Telescope mount control system (1kHz sampling,2% damping)"
@@ -11,9 +11,15 @@ categories = ["science", "simulation"]
 keywords = ["telescope", "astronomy"]
 
 [dependencies]
+ze00 = { version = "0.1.0", path = "../sampling1000-damping002_controllers/ze00", package = "gmt_mount-ctrl_sampling1000-damping002_ze00", optional = true }
+ze30 = { version = "0.1.0", path = "../sampling1000-damping002_controllers/ze30", package = "gmt_mount-ctrl_sampling1000-damping002_ze30", optional = true }
+ze60 = { version = "0.1.0", path = "../sampling1000-damping002_controllers/ze60", package = "gmt_mount-ctrl_sampling1000-damping002_ze60", optional = true }
 paste = "1.0.6"
 simulink-binder = "0.1.1"
 thiserror = "1.0.31"
 
 [build-dependencies]
 cc = "1.0.68"
+
+[package.metadata.docs.rs]
+features = ["ze30"]

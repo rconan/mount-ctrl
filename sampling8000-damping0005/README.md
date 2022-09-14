@@ -1,1 +1,7 @@
-# Giant Magellan Telescope mount control system for 8kHz sampling and 0.5% structural damping 
+# Giant Magellan Telescope mount control system 
+
+Settings:
+
+ * 30deg zenith pointing
+ * discrete sampling at 8kHz
+ * 0.5% structural damping

@@ -1,98 +1,155 @@
-pub mod ze30;
+use simulink_binder::import;
 
-pub enum Controller<'a> {
-    Ze30(ze30::Controller<'a>),
-    Default(ze30::Controller<'a>),
-}
+import! {Mount_Control,
+r##"
+#define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION
+/*
+ * File: Mount_Control.h
+ *
+ * Code generated for Simulink model 'Mount_Control'.
+ *
+ * Model version                  : 5.59
+ * Simulink Coder version         : 9.4 (R2020b) 29-Jul-2020
+ * C/C++ source code generated on : Wed Aug 31 13:54:57 2022
+ *
+ * Target selection: ert.tlc
+ * Embedded hardware selection: Intel->x86-64 (Linux 64)
+ * Code generation objectives: Unspecified
+ * Validation result: Not run
+ */
 
-#[derive(Debug, thiserror::Error)]
-pub enum ControlError {
-    #[error("Expected zenith angle 30 found {0}")]
-    ZenithAngle(i32),
-}
+#ifndef RTW_HEADER_Mount_Control_h_
+#define RTW_HEADER_Mount_Control_h_
+#include <string.h>
+#include <stddef.h>
+#ifndef Mount_Control_COMMON_INCLUDES_
+#define Mount_Control_COMMON_INCLUDES_
+#include "rtwtypes.h"
+#endif                                 /* Mount_Control_COMMON_INCLUDES_ */
 
-type Result<T> = std::result::Result<T, ControlError>;
+#include "Mount_Control_types.h"
 
-impl<'a> Controller<'a> {
-    /// Returns a default mount controller
-    pub fn new() -> Self {
-        Controller::Default(ze30::Controller::new())
-    }
-    /// Returns a mount controller for the given zenith angle
-    ///
-    /// The zenith angle is either 0, 30 or 60 degrees
-    pub fn at_zenith_angle(ze: i32) -> Result<Self> {
-        match ze {
-            ze if ze == 30 => Ok(Self::Ze30(ze30::Controller::new())),
-            _ => Err(ControlError::ZenithAngle(ze)),
-        }
-    }
-    /// Returns a mount controller for the given elevation
-    ///
-    /// The elevation is either 90, 60 or 30 degrees
-    pub fn at_elevation(el: i32) -> Result<Self> {
-        Self::at_zenith_angle(90 - el)
-    }
-    pub fn mount_fb(&mut self) -> Option<&mut [f64; 14]> {
-        match self {
-            Controller::Ze30(controller) => {
-                if let ze30::U::MountFB(val) = &mut controller.mount_fb {
-                    Some(val)
-                } else {
-                    None
-                }
-            }
+/* Macros for accessing real-time model data structure */
+#ifndef rtmGetErrorStatus
+#define rtmGetErrorStatus(rtm)         ((rtm)->errorStatus)
+#endif
 
-            Controller::Default(controller) => {
-                if let ze30::U::MountFB(val) = &mut controller.mount_fb {
-                    Some(val)
-                } else {
-                    None
-                }
-            }
-        }
-    }
-    pub fn mount_sp(&mut self) -> Option<&mut [f64; 3]> {
-        match self {
-            Controller::Ze30(controller) => {
-                if let ze30::U::MountSP(val) = &mut controller.mount_sp {
-                    Some(val)
-                } else {
-                    None
-                }
-            }
+#ifndef rtmSetErrorStatus
+#define rtmSetErrorStatus(rtm, val)    ((rtm)->errorStatus = (val))
+#endif
 
-            Controller::Default(controller) => {
-                if let ze30::U::MountSP(val) = &mut controller.mount_sp {
-                    Some(val)
-                } else {
-                    None
-                }
-            }
-        }
-    }
-    pub fn mount_cmd(&mut self) -> Option<&[f64; 3]> {
-        match self {
-            Controller::Ze30(controller) => {
-                let ze30::Y::Mountcmd(val) = &controller.mount_cmd;
-                Some(val)
-            }
+/* Block states (default storage) for system '<Root>' */
+typedef struct {
+  real_T AZFFcontroller_DSTATE[2];     /* '<S1>/AZ FF controller' */
+  real_T AZFBcontroller_DSTATE[15];    /* '<S1>/AZ FB controller' */
+  real_T ELFFcontroller_DSTATE[2];     /* '<S1>/EL FF controller' */
+  real_T ELFBcontroller_DSTATE[19];    /* '<S1>/EL FB controller' */
+  real_T GIRFFcontroller_DSTATE[2];    /* '<S1>/GIR FF controller' */
+  real_T GIRFBcontroller_DSTATE[7];    /* '<S1>/GIR FB controller' */
+} DW_Mount_Control_T;
 
-            Controller::Default(controller) => {
-                let ze30::Y::Mountcmd(val) = &controller.mount_cmd;
-                Some(val)
-            }
-        }
-    }
-}
+/* Constant parameters (default storage) */
+typedef struct {
+  /* Computed Parameter: AZFBcontroller_A
+   * Referenced by: '<S1>/AZ FB controller'
+   */
+  real_T AZFBcontroller_A[127];
 
-impl<'a> Iterator for Controller<'a> {
-    type Item = ();
+  /* Computed Parameter: AZFBcontroller_C
+   * Referenced by: '<S1>/AZ FB controller'
+   */
+  real_T AZFBcontroller_C[15];
 
-    fn next(&mut self) -> Option<Self::Item> {
-        match self {
-            Controller::Ze30(control) => control.next(),
-            Controller::Default(control) => control.next(),
-        }
-    }
-}
+  /* Computed Parameter: ELFBcontroller_A
+   * Referenced by: '<S1>/EL FB controller'
+   */
+  real_T ELFBcontroller_A[199];
+
+  /* Computed Parameter: ELFBcontroller_C
+   * Referenced by: '<S1>/EL FB controller'
+   */
+  real_T ELFBcontroller_C[19];
+
+  /* Computed Parameter: GIRFBcontroller_A
+   * Referenced by: '<S1>/GIR FB controller'
+   */
+  real_T GIRFBcontroller_A[37];
+
+  /* Computed Parameter: GIRFBcontroller_C
+   * Referenced by: '<S1>/GIR FB controller'
+   */
+  real_T GIRFBcontroller_C[7];
+} ConstP_Mount_Control_T;
+
+/* External inputs (root inport signals with default storage) */
+typedef struct {
+  real_T Mount_SP[3];                  /* '<Root>/Mount_SP' */
+  real_T Mount_FB[14];                 /* '<Root>/Mount_FB' */
+} ExtU_Mount_Control_T;
+
+/* External outputs (root outports fed by signals with default storage) */
+typedef struct {
+  real_T Mount_cmd[3];                 /* '<Root>/Mount_cmd' */
+} ExtY_Mount_Control_T;
+
+/* Real-time Model Data Structure */
+struct tag_RTM_Mount_Control_T {
+  const char_T * volatile errorStatus;
+};
+
+/* Block states (default storage) */
+extern DW_Mount_Control_T Mount_Control_DW;
+
+/* External inputs (root inport signals with default storage) */
+extern ExtU_Mount_Control_T Mount_Control_U;
+
+/* External outputs (root outports fed by signals with default storage) */
+extern ExtY_Mount_Control_T Mount_Control_Y;
+
+/* Constant parameters (default storage) */
+extern const ConstP_Mount_Control_T Mount_Control_ConstP;
+
+/* Model entry point functions */
+extern void Mount_Control_initialize(void);
+extern void Mount_Control_step(void);
+extern void Mount_Control_terminate(void);
+
+/* Real-time Model object */
+extern RT_MODEL_Mount_Control_T *const Mount_Control_M;
+
+/*-
+ * These blocks were eliminated from the model due to optimizations:
+ *
+ * Block '<S1>/az_ff_en' : Eliminated nontunable gain of 1
+ * Block '<S1>/el_ff_en' : Eliminated nontunable gain of 1
+ * Block '<S1>/gir_ff_en' : Eliminated nontunable gain of 1
+ */
+
+/*-
+ * The generated code includes comments that allow you to trace directly
+ * back to the appropriate location in the model.  The basic format
+ * is <system>/block_name, where system is the system number (uniquely
+ * assigned by Simulink) and block_name is the name of the block.
+ *
+ * Note that this particular code originates from a subsystem build,
+ * and has its own system numbers different from the parent model.
+ * Refer to the system hierarchy for this subsystem below, and use the
+ * MATLAB hilite_system command to trace the generated code back
+ * to the parent model.  For example,
+ *
+ * hilite_system('ims_Build5pt3b_PTTasm/Mount_Control')    - opens subsystem ims_Build5pt3b_PTTasm/Mount_Control
+ * hilite_system('ims_Build5pt3b_PTTasm/Mount_Control/Kp') - opens and selects block Kp
+ *
+ * Here is the system hierarchy for this model
+ *
+ * '<Root>' : 'ims_Build5pt3b_PTTasm'
+ * '<S1>'   : 'ims_Build5pt3b_PTTasm/Mount_Control'
+ */
+#endif                                 /* RTW_HEADER_Mount_Control_h_ */
+
+/*
+ * File trailer for generated code.
+ *
+ * [EOF]
+ */
+"##}
