@@ -3,5 +3,5 @@
 Settings:
 
  * 30deg zenith pointing
- * discrete sampling at 500kHz with 1kHz input/output rate transition
+ * discrete sampling at 500Hz with 1kHz input/output rate transition
  * 2% structural damping
