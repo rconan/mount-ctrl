@@ -1,0 +1,19 @@
+[package]
+name = "gmt_mount-ctrl_sampling1000-damping002_ze60"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+description = "Giant Magellan Telescope mount control system (1kHz sampling,2% damping)"
+repository = "https://github.com/rconan/mount-ctrl"
+documentation = "https://docs.rs/gmt_mount-ctrl_sampling1000-damping002_ze60"
+readme = "README.md"
+categories = ["science", "simulation"]
+keywords = ["telescope", "astronomy"]
+
+[dependencies]
+paste = "1.0.6"
+simulink-binder = "0.1.1"
+thiserror = "1.0.31"
+
+[build-dependencies]
+cc = "1.0.68"
