@@ -1,6 +1,6 @@
 [package]
 name = "gmt_mount-ctrl"
-version = "2.0.0"
+version = "2.0.1"
 authors = ["Rod Conan <rconan@gmto.org>"]
 edition = "2021"
 license = "MIT"
@@ -17,6 +17,7 @@ members = [
     "sampling8000-damping0005",
     "sampling1000-damping002_controllers/ze00",
     "sampling1000-damping002_controllers/ze30",
+    "sampling1000-damping002_controllers/ze30-500Hz",
     "sampling1000-damping002_controllers/ze60",
 ]
 [dependencies]
@@ -29,6 +30,7 @@ sampling8000-damping0005 = { version = "1.0.0", package = "gmt_mount-ctrl_sampli
 [features]
 s1000d002ze00 = ["sampling1000-damping002/ze00"]
 s1000d002ze30 = ["sampling1000-damping002/ze30"]
+s1000d002ze30-500Hz = ["sampling1000-damping002/ze30-500Hz"]
 s1000d002ze60 = ["sampling1000-damping002/ze60"]
 s8000d0005 = ["sampling8000-damping0005"]
 
