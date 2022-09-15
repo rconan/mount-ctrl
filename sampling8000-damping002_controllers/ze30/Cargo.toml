@@ -1,11 +1,11 @@
 [package]
-name = "gmt_mount-ctrl_sampling1000-damping002_ze30"
+name = "gmt_mount-ctrl_sampling8000-damping002_ze30"
 version = "0.1.0"
 edition = "2021"
 license = "MIT"
-description = "Giant Magellan Telescope mount control system (1kHz sampling,2% damping)"
+description = "Giant Magellan Telescope mount control system (8kHz sampling, 2% damping)"
 repository = "https://github.com/rconan/mount-ctrl"
-documentation = "https://docs.rs/gmt_mount-ctrl_sampling1000-damping002_ze30"
+documentation = "https://docs.rs/gmt_mount-ctrl_sampling8000-damping002_ze30"
 readme = "README.md"
 categories = ["science", "simulation"]
 keywords = ["telescope", "astronomy"]
