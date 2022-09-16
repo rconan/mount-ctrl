@@ -4,6 +4,8 @@
 pub use sampling1000_damping002::{controller, drives};
 #[cfg(feature = "s8000d0005")]
 pub use sampling8000_damping0005::{controller, drives};
+#[cfg(feature = "sampling8000-damping002")]
+pub use sampling8000_damping002::{controller, drives};
 
 pub trait DriveController {
     fn mount_cmd(&mut self) -> Option<&mut [f64; 3]>;
