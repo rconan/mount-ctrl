@@ -19,12 +19,16 @@ members = [
     "sampling1000-damping002_controllers/ze30",
     "sampling1000-damping002_controllers/ze30-500Hz",
     "sampling1000-damping002_controllers/ze60",
+    "sampling8000-damping002_controllers/ze00",
+    "sampling8000-damping002_controllers/ze30",
+    "sampling8000-damping002_controllers/ze60",
 ]
 [dependencies]
 paste = "1.0.6"
 simulink-binder = "0.1.1"
 thiserror = "1.0.31"
 sampling1000-damping002 = { version = "1.0.0", package = "gmt_mount-ctrl_sampling1000-damping002", path = "sampling1000-damping002", optional = true }
+sampling8000-damping002 = { version = "1.0.0", package = "gmt_mount-ctrl_sampling8000-damping002", path = "sampling8000-damping002", optional = true }
 sampling8000-damping0005 = { version = "1.0.0", package = "gmt_mount-ctrl_sampling8000-damping0005", path = "sampling8000-damping0005", optional = true }
 
 [features]
@@ -32,6 +36,9 @@ s1000d002ze00 = ["sampling1000-damping002/ze00"]
 s1000d002ze30 = ["sampling1000-damping002/ze30"]
 s1000d002ze30-500Hz = ["sampling1000-damping002/ze30-500Hz"]
 s1000d002ze60 = ["sampling1000-damping002/ze60"]
+s8000d002ze00 = ["sampling8000-damping002/ze00"]
+s8000d002ze30 = ["sampling8000-damping002/ze30"]
+s8000d002ze60 = ["sampling8000-damping002/ze60"]
 s8000d0005 = ["sampling8000-damping0005"]
 
 [package.metadata.docs.rs]
